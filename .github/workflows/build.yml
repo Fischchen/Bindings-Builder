@@ -33,6 +33,10 @@ jobs:
       - name: Update NPM Client
         run: npm install -g npm
       - name: Install Modules
-        run: npm install
+        run: |
+          npm config set msbuild_path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
+          npm install
       - name: Rebuild serialport and Commit
-        run: node --unhandled-rejections=strict build.js ${{ matrix.os }} ${{ secrets.TOKEN }} ${{ secrets.EMAIL }}
+        run: |
+          npm config set msbuild_path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
+          node --unhandled-rejections=strict build.js ${{ matrix.os }} ${{ secrets.TOKEN }} ${{ secrets.EMAIL }}
