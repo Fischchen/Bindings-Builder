@@ -20,8 +20,10 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: powershell
         run: |
+          npm config set msbuild_path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
           npm install --global node-gyp@latest
-          npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
+          npm prefix -g | % {npm config set node_gyp
+          "$_\node_modules\node-gyp\bin\node-gyp.js"}
       - name: Ensure latest macOS SDK is used
         if: matrix.os == 'macos-latest'
         shell: zsh {0}
