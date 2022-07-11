@@ -53,6 +53,7 @@ async function build(matrix, token, email) {
     let platformResponsibilities = _.find(responsibilities, x => x.matrix == matrix);
     let modulesVersion = CodeVersion.getProcessingVersions(codeVersions);
     let rebuild = new Rebuild();
+    // rebuild.rebuildPlatform(modulesVersion);
 
     for (let arch of platformResponsibilities.arch) {
         for (let x of modulesVersion) {
@@ -73,7 +74,7 @@ async function build(matrix, token, email) {
                 // NB: following line will fail when run in debug.
                 let builtFolder = await rebuild.rebuildPlatform(x);
                 // For debugging only
-                //let builtFolder = path.resolve(path.join("node_modules", "@serialport", "bindings", "bin", `${x.platform}-${x.arch}-${x.modules}`));
+                // let builtFolder = path.resolve(path.join("node_modules", "@serialport", "bindings", "bin", `${x.platform}-${x.arch}-${x.modules}`));
 
                 let finalFolder = NativeModules.add(builtFolder, bindingsRoot, x);
 
