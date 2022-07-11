@@ -34,7 +34,6 @@ jobs:
         run: npm install -g npm
       - name: Install Modules
         run: |
-          npm config set msvs_version 2022
           npm config set msbuild_path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
           npm install
       - name: Rebuild serialport and Commit
